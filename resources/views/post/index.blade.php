@@ -10,6 +10,6 @@
             <a href="{{ route('post.create') }}" class="btn btn-success">投稿する</a>
         @endif
         <!-- 一覧画面 -->
-        <x-bbs-list/>
+        <x-bbs-list :$posts />
     </div>
 </x-bbs-index>
