@@ -17,7 +17,7 @@
                     <span class="me-4">{{ Auth::user()->name }}</span>
                     <form method="POST" action="{{ route('logout') }}" class="d-inline">
                         @csrf
-                        <button type="submit" class="btn btn-danger">ログアウト</button>
+                        <button type="submit" class="btn btn-outline-danger">ログアウト</button>
                     </form>
                 @else
                     <a href="{{ route('login') }}" class="btn btn-outline-success">ログイン</a>

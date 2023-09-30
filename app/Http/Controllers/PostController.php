@@ -13,7 +13,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        return view('post/index');
+        $posts = Post::select('id', 'title', 'comment')->get();
+        return view('post/index', compact('posts'));
     }
 
     /**
@@ -35,7 +36,7 @@ class PostController extends Controller
             'comment' => $request->comment,
         ]);
 
-        return to_route('post.index')
+        return to_route('post/index')
         ->with('message', $request->title . 'を投稿しました！');
     }
 
@@ -44,7 +45,9 @@ class PostController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $detail = Post::find($id);
+
+        return view('post/show', compact('detail'));
     }
 
     /**
