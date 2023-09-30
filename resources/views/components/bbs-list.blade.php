@@ -9,6 +9,7 @@
             <th scope="col">いいね</th>
             <th scope="col"></th>
             <th scope="col"></th>
+            <th scope="col"></th>
         @endif
         </tr>
     </thead>
@@ -17,7 +18,7 @@
             <tr>
                 <td scope="row">{{ $post->id }}</td>
                 <td>
-                    <a href="{{ route('post.show', ['id' => $post->id]) }}" class="text-decoration-none">{{ $post->title }}</a>
+                    <a href="{{ route('post.show', ['id' => $post->id]) }}" class="link-success text-decoration-none">{{ $post->title }}</a>
                 </td>
                 <td>{{ $post->comment }}</td>
                 @if (Auth::check())
@@ -29,6 +30,14 @@
                     <td scope="col">
                         @if (Auth::id() == $post->user_id)
                             <a href="{{ route('post.edit', ['id' => $post->id]) }}" class="btn btn-success btn-sm">編集</a>
+                        @endif
+                    </td>
+                    <td scope="col">
+                        @if (Auth::id() == $post->user_id)
+                            <form method="post" action="{{ route('post.delete', ['id' => $post->id]) }}">
+                                @csrf
+                                <input type="submit" class="btn btn-danger btn-sm" value="削除">
+                            </form>
                         @endif
                     </td>
                     <td scope="col">返信</td>

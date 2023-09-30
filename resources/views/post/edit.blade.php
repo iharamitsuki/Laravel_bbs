@@ -21,5 +21,8 @@
                 <button type="submit" class="btn btn-success btn-lg">更新</button>
             </div>
         </form>
+        <div class="d-md-flex justify-content-md-end">
+            <a href="{{ route('post.index') }}" class="btn btn-outline-success mt-2">戻る</a>
+        </div>
     </div>
 </x-bbs-index>

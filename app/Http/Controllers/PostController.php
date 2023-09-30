@@ -79,8 +79,12 @@ class PostController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function delete(string $id)
     {
-        //
+        $delete = Post::find($id);
+        $delete->delete();
+
+        return to_route('post.index')
+        ->with('message', $delete->title . 'を削除しました！');
     }
 }
