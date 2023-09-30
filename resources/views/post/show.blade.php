@@ -20,6 +20,6 @@
                 <div name="comment" class="form-control" rows="3">{{ $detail->created_at }}</div>
             </div>
         </div>
-        <a href="{{ route('post.index') }}" class="btn btn-success mt-2">戻る</a>
+        <a href="{{ route('post.index') }}" class="btn btn-outline-success mt-2">戻る</a>
     </div>
 </x-bbs-index>
