@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Post;
 
 class PostController extends Controller
 {
@@ -27,7 +29,14 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Post::create([
+            'user_id' => Auth::id(),
+            'title'   => $request->title,
+            'comment' => $request->comment,
+        ]);
+
+        return to_route('post.index')
+        ->with('message', $request->title . 'を投稿しました！');
     }
 
     /**
