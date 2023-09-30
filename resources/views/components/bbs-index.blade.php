@@ -11,7 +11,7 @@
 <body class="bg-light">
     <header class="p-3 mb-2 bg-white text-dark">
         <div class="d-flex container justify-content-between">
-            <h3 class="bg-success text-white rounded p-1">Laravel掲示板</h3>
+            <a href="{{ route('post.index') }}" class="bg-success text-white rounded p-2 text-decoration-none">Laravel掲示板</a>
             <div>
                 @if (Auth::check())
                     <span class="me-4">{{ Auth::user()->name }}</span>
