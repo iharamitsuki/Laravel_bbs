@@ -1,5 +1,5 @@
 <x-bbs-index>
-    <x-slot:title>NewPost</x-slot:title>
+    <x-slot:title>show</x-slot:title>
     <div class="w-75 p-3 container">
         <h4 class="">投稿詳細</h4>
         <div class="border border-success rounded p-2">
