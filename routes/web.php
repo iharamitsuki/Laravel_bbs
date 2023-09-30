@@ -33,6 +33,7 @@ Route::get('/', [PostController::class, 'index'])->name('post.index');
 
 Route::prefix('post')
 ->controller(PostController::class)
+->middleware(['auth'])
 ->name('post.')
 ->group(function(){
     Route::get('/', 'index')->name('index');
