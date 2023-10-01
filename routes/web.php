@@ -52,8 +52,7 @@ Route::prefix('comment')
 ->name('comment.')
 ->group(function(){
     Route::get('/{id}/create', 'create')->name('create');
-    Route::post('/', 'store')->name('store');
-    Route::get('/{id}', 'show')->name('show');
+    Route::post('/{id}/store', 'store')->name('store');
     Route::get('/{id}/edit', 'edit')->name('edit');
     Route::post('/{id}', 'update')->name('update');
     Route::post('/{id}/delete', 'delete')->name('delete');
