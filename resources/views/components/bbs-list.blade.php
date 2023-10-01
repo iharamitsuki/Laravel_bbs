@@ -30,6 +30,8 @@
                     <td scope="col">
                         @if (Auth::id() == $post->user_id)
                             <a href="{{ route('post.edit', ['id' => $post->id]) }}" class="btn btn-success btn-sm">編集</a>
+                        @elseif (Auth::id() != $post->user_id)
+                            <a href="{{ route('comment.create', ['id' => $post->id]) }}" class="btn btn-outline-success btn-sm">返信</a>
                         @endif
                     </td>
                     <td scope="col">

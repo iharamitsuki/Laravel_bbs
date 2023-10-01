@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\CommentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -38,6 +39,19 @@ Route::prefix('post')
 ->group(function(){
     Route::get('/', 'index')->name('index');
     Route::get('/create', 'create')->name('create');
+    Route::post('/', 'store')->name('store');
+    Route::get('/{id}', 'show')->name('show');
+    Route::get('/{id}/edit', 'edit')->name('edit');
+    Route::post('/{id}', 'update')->name('update');
+    Route::post('/{id}/delete', 'delete')->name('delete');
+});
+
+Route::prefix('comment')
+->controller(CommentController::class)
+->middleware(['auth'])
+->name('comment.')
+->group(function(){
+    Route::get('/{id}/create', 'create')->name('create');
     Route::post('/', 'store')->name('store');
     Route::get('/{id}', 'show')->name('show');
     Route::get('/{id}/edit', 'edit')->name('edit');
