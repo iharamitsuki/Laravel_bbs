@@ -21,18 +21,23 @@ class CommentController extends Controller
 
     /**
      * Store a newly created resource in storage.
+     *
+     * $request　フォームから受けっとった値
+     * $idで紐づいたpostのデータを取得する
      */
-    public function store(Request $request)
+    public function store(Request $request, string $id)
     {
-        //
-    }
+        // ポストのデータを取ってくる
+        $post = Post::find($id);
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
+        Comment::create([
+            'user_id' => Auth::id(),
+            'post_id' => $post->id,
+            'comment' => $request->comment,
+        ]);
+
+        return to_route('post.index')
+        ->with('message', $post->title . 'に返信しました！');
     }
 
     /**
@@ -40,7 +45,9 @@ class CommentController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $edit = Comment::find($id);
+
+        return view('comment.edit', compact('edit'));
     }
 
     /**
@@ -48,14 +55,25 @@ class CommentController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $update = Comment::find($id);
+
+        $update->comment = $request->comment;
+
+        $update->save();
+
+        return to_route('comment.edit', ['id' => $request->id])
+        ->with('message', 'コメントを更新しました！');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function delete(string $id)
     {
-        //
+        $delete = Comment::find($id);
+        $delete->delete();
+
+        return to_route('post.index')
+        ->with('message', 'コメントを削除しました！');
     }
 }

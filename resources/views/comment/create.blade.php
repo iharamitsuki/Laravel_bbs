@@ -2,7 +2,7 @@
     <x-slot:title>Comment</x-slot:title>
     <div class="w-75 p-3 container">
         <h4 class="">{{ $comment->title }}に返信する</h4>
-        <form action="{{ route('comment.store') }}" method="post" class="row g-2">
+        <form action="{{ route('comment.store', ['id' => $comment->id]) }}" method="post" class="row g-2">
             @csrf
             <div class="mb-3">
                 <label class="form-label">コメント</label>

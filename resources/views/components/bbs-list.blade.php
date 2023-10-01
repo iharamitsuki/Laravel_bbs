@@ -9,7 +9,6 @@
             <th scope="col">いいね</th>
             <th scope="col"></th>
             <th scope="col"></th>
-            <th scope="col"></th>
         @endif
         </tr>
     </thead>
@@ -42,9 +41,30 @@
                             </form>
                         @endif
                     </td>
-                    <td scope="col">返信</td>
                 @endif
             </tr>
+            @if (Auth::check())
+                @foreach ($post->comments as $comment)
+                    <tr>
+                        <td>>>{{ $post->id }}</td>
+                        <td></td>
+                        <td colspan="2">{{ $comment->comment }}</td>
+                        <td scope="col">
+                            @if (Auth::id() == $comment->user_id)
+                                <a href="{{ route('comment.edit', ['id' => $comment->id]) }}" class="btn btn-success btn-sm">編集</a>
+                            @endif
+                        </td>
+                        <td scope="col">
+                            @if (Auth::id() == $comment->user_id)
+                                <form method="post" action="{{ route('comment.delete', ['id' => $comment->id]) }}">
+                                    @csrf
+                                    <input type="submit" class="btn btn-danger btn-sm" value="削除">
+                                </form>
+                            @endif
+                        </td>
+                    </tr>
+                @endforeach
+            @endif
         @endforeach
     </tbody>
 </table>
