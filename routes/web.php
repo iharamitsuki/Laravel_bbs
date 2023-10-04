@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\LikeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -55,6 +56,15 @@ Route::prefix('comment')
     Route::post('/{id}/store', 'store')->name('store');
     Route::get('/{id}/edit', 'edit')->name('edit');
     Route::post('/{id}', 'update')->name('update');
+    Route::post('/{id}/delete', 'delete')->name('delete');
+});
+
+Route::prefix('like')
+->controller(LikeController::class)
+->middleware(['auth'])
+->name('like.')
+->group(function(){
+    Route::post('/{id}/store', 'store')->name('store');
     Route::post('/{id}/delete', 'delete')->name('delete');
 });
 
