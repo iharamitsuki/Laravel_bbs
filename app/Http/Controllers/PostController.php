@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Post;
 use App\Models\Comment;
+use App\Models\Like;
 
 class PostController extends Controller
 {
@@ -15,8 +16,7 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::with('comments')->get();
-        // dd($posts->comments);
-        // $posts = Post::select('id', 'user_id', 'title', 'comment')->get();
+
         return view('post.index', compact('posts'));
     }
 
