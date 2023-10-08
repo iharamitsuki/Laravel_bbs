@@ -23,19 +23,25 @@
                 @if (Auth::check())
                     <td scope="col">
                         @if (!Auth::user()->likes($post->id))
-                            <form method="post" action="{{ route('like.store', ['id' => $post->id]) }}">
-                                @csrf
-                                <button class="btn">
-                                    <i class="bi bi-heart"></i>
-                                </button>
-                            </form>
+                            <div class="d-flex align-items-center">
+                                <form method="post" action="{{ route('like.store', ['id' => $post->id]) }}">
+                                    @csrf
+                                    <button class="btn">
+                                        <i class="bi bi-heart"></i>
+                                    </button>
+                                </form>
+                                <span class="align-middle">{{ $post->likeUsers->count() }}</span>
+                            </div>
                         @else
-                            <form method="post" action="{{ route('like.delete', ['id' => $post->id]) }}">
-                                @csrf
-                                <button class="btn">
-                                    <i class="bi bi-heart-fill" style="color: #d63384;"></i>
-                                </button>
-                            </form>
+                            <div class="d-flex align-items-center">
+                                <form method="post" action="{{ route('like.delete', ['id' => $post->id]) }}">
+                                    @csrf
+                                    <button class="btn">
+                                        <i class="bi bi-heart-fill" style="color: #d63384;"></i>
+                                    </button>
+                                </form>
+                                <span class="align-middle">{{ $post->likeUsers->count() }}</span>
+                            </div>
                         @endif
                     </td>
                     <td scope="col">
